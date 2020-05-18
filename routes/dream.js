@@ -1,21 +1,8 @@
 const router = require("express").Router();
+const dreamsController = require("../controllers/dreamsController");
 
-let Dream = require("../models/dream");
+router.route("/").get(dreamsController.findAll);
 
-router.route("/").get((req, res) => {
-  Dream.find()
-    .then((dreams) => res.json(dreams))
-    .catch((err) => res.status(400).json("Error: " + err));
-});
-
-router.route("/add").post((req, res) => {
-  const dream = req.body.dream;
-  const newDream = new Dream({ dream: dream });
-
-  newDream
-    .save()
-    .then(() => res.json("Dream added"))
-    .catch((err) => res.status(400).json("Error: " + err));
-});
+router.route("/add").post(dreamsController.create);
 
 module.exports = router;
