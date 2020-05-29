@@ -23,6 +23,9 @@ const userSchema = new Schema({
     minlength: 8,
     required: true,
   },
+  dreams: {
+    type: [String],
+  }
 });
 
 const User = mongoose.model("User", userSchema);

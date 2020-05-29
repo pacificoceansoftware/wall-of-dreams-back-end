@@ -16,11 +16,27 @@ module.exports = {
       lastName: req.body.lastName,
       emailAddress: req.body.emailAddress,
       password: req.body.password,
+      dreams: req.body.dream,
     });
 
     newUser
       .save()
       .then(() => res.json("User added"))
       .catch((err) => res.status(400).json("Error: " + err));
+  },
+  getDreams:  function (req, res) {
+    User.find({}, "dreams")
+      .then((dream) => res.json(dream))
+      .catch((err) => res.status(422).json("Error: " + err));
+  },
+  addDream: function (req, res) {
+    User.find({
+      emailAddress: req.body.emailAddress,
+      password: req.body.password,
+    })
+      .then((user) => {
+        user.up
+      })
+      .catch((err) => res.status(422).json(err));
   },
 };
