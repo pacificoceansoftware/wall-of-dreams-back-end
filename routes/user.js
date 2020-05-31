@@ -7,4 +7,6 @@ router.route("/add").post(usersController.create);
 
 router.route("/dreams").get(usersController.getDreams);
 
+router.route("/addDream").patch(usersController.addDream);
+
 module.exports = router;
